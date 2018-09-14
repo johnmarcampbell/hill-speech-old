@@ -20,5 +20,10 @@ bootstrap.init_app(app)
 def index():
     return render_template('index.html')
 
+@app.route('/speaker/<speaker>')
+def speaker(speaker):
+    return render_template('speaker.html', speaker=speaker)
+
+
 if __name__ == '__main__':
 	app.run(port=5000, debug=True)
