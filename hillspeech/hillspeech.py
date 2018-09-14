@@ -5,12 +5,14 @@ from gensim.corpora import Dictionary
 from pymongo import MongoClient
 import pickle
 
+from helpers import get_speaker_topics
+
 DICTIONARY_PATH = 'models/dictionary_97-07_and_10-18.dict'
 with open(DICTIONARY_PATH, 'rb') as f:
     dictionary = pickle.load(f)
 
 MODEL_PATH = 'models/all_50topics.lda'
-LdaModel.load(MODEL_PATH)
+model = LdaModel.load(MODEL_PATH)
 
 bootstrap = Bootstrap()
 app = Flask(__name__)
@@ -23,6 +25,8 @@ def index():
 
 @app.route('/speaker/<speaker>')
 def speaker(speaker):
+    topics = get_speaker_topics(model, speaker, dictionary) # Not currently using
+
     client = MongoClient()
     db = client['congressional-record']
     speeches = db['speeches']   
