@@ -1,5 +1,15 @@
 from flask import Flask, render_template, request
 from flask_bootstrap import Bootstrap
+from gensim.models import LdaModel
+from gensim.corpora import Dictionary
+import pickle
+
+DICTIONARY_PATH = 'models/dictionary_97-07_and_10-18.dict'
+with open(DICTIONARY_PATH, 'rb') as f:
+    dictionary = pickle.load(f)
+
+MODEL_PATH = 'models/all_50topics.lda'
+LdaModel.load(MODEL_PATH)
 
 bootstrap = Bootstrap()
 app = Flask(__name__)
