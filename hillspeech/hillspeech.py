@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from flask_bootstrap import Bootstrap
 from gensim.models import LdaModel
 from gensim.corpora import Dictionary
+from pymongo import MongoClient
 import pickle
 
 DICTIONARY_PATH = 'models/dictionary_97-07_and_10-18.dict'
@@ -22,7 +23,19 @@ def index():
 
 @app.route('/speaker/<speaker>')
 def speaker(speaker):
-    return render_template('speaker.html', speaker=speaker)
+    client = MongoClient()
+    db = client['congressional-record']
+    speeches = db['speeches']   
+    search = {"speaker": speaker}
+    result = speeches.find_one(search)
+    client.close()
+
+    if result:
+        content = result['text']
+    else:
+        content = 'No records returned'
+
+    return render_template('speaker.html', speaker=speaker, content=content)
 
 
 if __name__ == '__main__':
