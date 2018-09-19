@@ -1,13 +1,22 @@
 {% extends "base.html" %}
 
+{% block head %}
+    {{ super() }}
+
+    {{ script|safe }}
+
+{% endblock %}
+
     {% block content %}
+
     <div class="container">
-        <div class="starter-template">
-            <h1>Hello {{speaker}} </h1>
-            <h2>Did you say...</h2>
-            {{ content }}
+        <div class="page-header">
+            <div class="jumbotron">
+                {{ div | safe }}
+            </div>
         </div>
     </div>
+</div>
 
 {% endblock %}
 
