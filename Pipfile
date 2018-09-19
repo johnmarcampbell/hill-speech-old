@@ -10,6 +10,7 @@ gensim = "*"
 pymongo = "*"
 jupyter = "*"
 bokeh = "*"
+flask-wtf = "*"
 
 [dev-packages]
 

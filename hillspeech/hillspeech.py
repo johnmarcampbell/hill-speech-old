@@ -7,6 +7,7 @@ from bokeh.embed import components
 import pickle
 
 from helpers import get_speaker_topics, get_topic_name, make_topic_plot
+from forms import GetSpeakerForm
 
 DICTIONARY_PATH = 'models/dictionary_97-07_and_10-18.dict'
 with open(DICTIONARY_PATH, 'rb') as f:
@@ -17,6 +18,7 @@ model = LdaModel.load(MODEL_PATH)
 
 bootstrap = Bootstrap()
 app = Flask(__name__)
+app.secret_key = 'dev_key'
 bootstrap.init_app(app)
 
 # Index page
@@ -24,8 +26,13 @@ bootstrap.init_app(app)
 def index():
     return render_template('index.html')
 
-@app.route('/speaker/<speaker>')
-def speaker(speaker):
+@app.route('/speaker', methods=['GET', 'POST'])
+def speaker():
+    form = GetSpeakerForm()
+    if request.method == 'POST':
+        speaker = form.name.data
+    else:
+        speaker = 'kilmer'
 
     topics = get_speaker_topics(model,speaker, dictionary)
     topics = [(get_topic_name(x[0]), x[1]) for x in topics]
@@ -37,7 +44,8 @@ def speaker(speaker):
     p = make_topic_plot(labels, vals)
     script, div = components(p)
 
-    return render_template('speaker.html', speaker=speaker, script=script, div=div)
+    return render_template('speaker.html', speaker=speaker,
+            script=script, div=div, form=form)
 
 
 if __name__ == '__main__':
