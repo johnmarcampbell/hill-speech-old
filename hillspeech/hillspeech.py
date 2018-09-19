@@ -29,8 +29,9 @@ def index():
 @app.route('/speaker', methods=['GET', 'POST'])
 def speaker():
     form = GetSpeakerForm()
-    if request.method == 'POST':
+    if form.validate_on_submit():
         speaker = form.name.data
+        print("Speaker: " + speaker)
     else:
         speaker = 'kilmer'
 
