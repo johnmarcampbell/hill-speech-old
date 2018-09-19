@@ -4,6 +4,7 @@ from gensim.models import LdaModel
 from gensim.corpora import Dictionary
 from pymongo import MongoClient
 from bokeh.embed import components
+import pyLDAvis
 import pickle
 
 from helpers import get_speaker_topics, get_topic_name, make_topic_plot
@@ -15,6 +16,10 @@ with open(DICTIONARY_PATH, 'rb') as f:
 
 MODEL_PATH = 'models/all_50topics.lda'
 model = LdaModel.load(MODEL_PATH)
+
+VIS_PATH = 'models/all_50topics.ldavis'
+with open(VIS_PATH, 'rb') as f:
+    vis = pickle.load(f)
 
 bootstrap = Bootstrap()
 app = Flask(__name__)
@@ -48,6 +53,10 @@ def speaker():
     return render_template('speaker.html', speaker=speaker,
             script=script, div=div, form=form)
 
+@app.route('/model')
+def model_page():
+    vis_html = pyLDAvis.prepared_data_to_html(vis)
+    return render_template('model.html', vis_html=vis_html)
 
 if __name__ == '__main__':
 	app.run(port=5000, debug=True)

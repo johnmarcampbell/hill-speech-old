@@ -11,6 +11,7 @@ pymongo = "*"
 jupyter = "*"
 bokeh = "*"
 flask-wtf = "*"
+pyldavis = "*"
 
 [dev-packages]
 
