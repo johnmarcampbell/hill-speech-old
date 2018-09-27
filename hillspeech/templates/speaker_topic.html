@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{ super() }}
+<link
+    href="https://cdn.pydata.org/bokeh/release/bokeh-0.13.0.min.css"
+    rel="stylesheet" type="text/css">
+<link
+    href="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.13.0.min.css"
+    rel="stylesheet" type="text/css">
+
+<script src="https://cdn.pydata.org/bokeh/release/bokeh-0.13.0.min.js"></script>
+<script src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.13.0.min.js"></script>
+
+    {{ script|safe }}
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="page-header">
+            <div align="center">
+                <h1> Topic distribution for {{speaker}} </h1>
+                <div class="jumbotron">
+                    {{ div | safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-from bokeh.models import ColumnDataSource
+from bokeh.models import ColumnDataSource, HoverTool
 from bokeh.plotting import figure
 
 # These are hard-coded topic labels for a particular model.

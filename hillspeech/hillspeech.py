@@ -6,8 +6,12 @@ from pymongo import MongoClient
 from bokeh.embed import components
 import pyLDAvis
 import pickle
+from datetime import datetime
+import pandas as pd
 
-from helpers import get_speaker_topics, get_topic_name, make_topic_plot
+from helpers import get_speaker_topics, get_topic_name, make_topic_plot, \
+    score_doc, score_corpus, make_scoreVsTime_plot
+
 from forms import GetSpeakerForm
 
 DICTIONARY_PATH = 'models/dictionary_97-07_and_10-18.dict'
@@ -57,6 +61,25 @@ def speaker():
 def model_page():
     vis_html = pyLDAvis.prepared_data_to_html(vis)
     return render_template('model.html', vis_html=vis_html)
+
+@app.route('/speaker/<speaker>/<topic>')
+def speaker_topic_page(speaker, topic):
+    client = MongoClient()
+    db = client['congressional-record']
+    speeches = db['speeches']
+    # TODO: The speaker 'kilmer' is hard coded here. Change.
+    search = {'speaker':'kilmer'}
+    speaker_corpus = [(post['lemma'], datetime.strptime(post['date'], '%m/%d/%Y')) for post in speeches.find(search) ]
+    client.close()
+
+    # TODO: The topic number '3' is hard coded here. Change.
+    community_docs = score_corpus(speaker_corpus, model, dictionary, 3)
+    df = pd.DataFrame(community_docs, columns=['score', 'date', 'text'])
+    p = make_scoreVsTime_plot(df)
+    script, div = components(p)
+
+    return render_template('speaker_topic.html', speaker=speaker,
+            script=script, div=div)
 
 if __name__ == '__main__':
 	app.run(port=5000, debug=True)
