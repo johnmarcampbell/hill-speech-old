@@ -73,3 +73,32 @@ def make_topic_plot(labels, vals):
     p.yaxis.major_label_text_font_size = "15pt"
     p.toolbar.logo = None
     return p
+
+
+def score_doc(doc, model, dictionary, n_topic):
+    """Give the score for a document compared to a given topic"""
+    doc_vect = dictionary.doc2bow(doc.split())
+    scores = model.get_document_topics(doc_vect)
+    for (n, score) in scores:
+        if n == n_topic:
+            return score
+        else:
+            return 0
+
+def score_corpus(corpus, model, dictionary, n_topic):
+    """Loop over all documents in a corpus score them on a given topic"""
+    scores = [(score_doc(doc, model, dictionary, n_topic), date, doc[:200]) for (doc, date) in corpus]
+    return [x for x in scores if x[0] != 0]
+
+def make_scoreVsTime_plot(data):
+    """Make a plot of score versus time for a set of (scored) documents"""
+    p = figure(plot_width=600, plot_height=400, x_axis_type='datetime')
+    
+    source = ColumnDataSource(data=data)
+    hover = HoverTool()
+    hover.tooltips = [('', '@text')]
+    p.add_tools(hover)
+
+    p.circle(x='date', y='score', line_width=2, source=source, size=20, color="navy", alpha=0.6)
+    
+    return p
