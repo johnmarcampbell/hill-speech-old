@@ -63,7 +63,13 @@ def get_topic_name(index):
     return 'Topic_'+str(index)
 
 def make_topic_plot(labels, vals):
+    vals = [x*100 for x in vals] # Change to percent
     source = ColumnDataSource(data=dict(topics=labels, focus=vals))
     p = figure(y_range=labels)
     p.hbar(y='topics', right='focus', source=source, height=0.8)
+    p.xaxis.axis_label = 'Focus (%)'
+    p.xaxis.axis_label_text_font_size = "25pt"
+    p.xaxis.major_label_text_font_size = "15pt"
+    p.yaxis.major_label_text_font_size = "15pt"
+    p.toolbar.logo = None
     return p
