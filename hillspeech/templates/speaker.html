@@ -9,6 +9,12 @@
     href="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.13.0.min.css"
     rel="stylesheet" type="text/css">
 
+<link 
+    href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+    rel="stylesheet"
+    integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" 
+    crossorigin="anonymous">
+
 <script src="https://cdn.pydata.org/bokeh/release/bokeh-0.13.0.min.js"></script>
 <script src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.13.0.min.js"></script>
 
@@ -26,10 +32,18 @@
                 <h5 class="card-header">
                     {{speaker['first_name'] }} {{speaker['last_name'] }}, {{speaker['roles'][0]['state']}} ({{speaker['roles'][0]['party']}})
                 </h5>
-                <div class="card-body">
-                    <p >Twitter: <a href="">@{{speaker['twitter_account']}}</a></p>
-                    <p >Facebook: <a href="">{{speaker['facebook_account']}}</a></p>
-                    <p >YouTube: <a href="">{{speaker['youtube_account']}}</a></p>
+                <div class="card-body text-center my-2">
+                    <a href="https://www.twitter.com/{{speaker['twitter_account']}}" style="text-decoration: none !important">
+                        <i class="fab fa-twitter fa-2x" ></i>
+                    </a>
+                    <a href="https://www.youtube.com/user/{{speaker['youtube_account']}}" style="text-decoration: none !important">
+                    <i class="fab fa-youtube fa-2x"></i>
+                    </a>
+                    <a href="https://www.facebook.com/{{speaker['facebook_account']}}" style="text-decoration: none !important">
+                    <i class="fab fa-facebook fa-2x"></i>
+                    </a>
+                </div>
+                <div class="card-body text-left">
                     <p >Member since: {{speaker['roles'][-1]['start_date']}}</p>
                     <p >Bills sponsored: {{speaker['roles'][0]['bills_sponsored']}}</p>
                     <p >Bills cosponsored: {{speaker['roles'][0]['bills_cosponsored']}}</p>
