@@ -1,24 +1,39 @@
-{% extends "bootstrap/base.html" %}
+{# 
+This is taken from the flask_bootstrap repo: 
+    https://github.com/mbr/flask-bootstrap/blob/master/flask_bootstrap/templates/bootstrap/base.html
+#}
 
-{% block title %}
-    Hillspeech.org
-{% endblock %}
+{% block doc -%}
+<!DOCTYPE html>
+<html{% block html_attribs %}{% endblock html_attribs %}>
+{%- block html %}
+  <head>
+    {%- block head %}
+    <title>{% block title %}{{title|default}}{% endblock title %}</title>
 
-{% block navbar %}
-<div class="navbar navbar-inverse">
-    <div class="container">
-        <div class="navbar-brand">
-            <p>Hillspeech.org</p>
-        </div>
+    {%- block metas %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%- endblock metas %}
 
-        <!-- Collect navbar links, etc. -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="{{ url_for('speaker') }}">Speakers</a></li>
-                <li><a href="{{ url_for('model_page') }} ">Model</a></li>
-                <li><a href="{{ url_for('speaker_topic_page', speaker='kilmer', topic='3') }} ">Detail</a></li>
-        </div>
-    </div>
-</div>
+    {%- block styles %}
+    <!-- Bootstrap -->
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    {%- endblock styles %}
+    {%- endblock head %}
+  </head>
+  <body{% block body_attribs %}{% endblock body_attribs %}>
+    {% block body -%}
+    {% block navbar %}
+    {%- endblock navbar %}
+    {% block content -%}
+    {%- endblock content %}
 
-{% endblock %}
+    {% block scripts %}
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {%- endblock scripts %}
+    {%- endblock body %}
+  </body>
+{%- endblock html %}
+</html>
+{% endblock doc -%}

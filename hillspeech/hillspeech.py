@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request
-from flask_bootstrap import Bootstrap
 from gensim.models import LdaModel
 from gensim.corpora import Dictionary
 from pymongo import MongoClient
@@ -25,10 +24,8 @@ VIS_PATH = 'models/all_50topics.ldavis'
 with open(VIS_PATH, 'rb') as f:
     vis = pickle.load(f)
 
-bootstrap = Bootstrap()
 app = Flask(__name__)
 app.secret_key = 'dev_key'
-bootstrap.init_app(app)
 
 # Index page
 @app.route('/')
