@@ -17,40 +17,47 @@
 {% endblock %}
 
 {% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
 
-    <div class="container">
-        <div class="page-header">
-            <div align="center">
-                <h1> Topic distribution for {{speaker['last_name']}} </h1>
-                <div class="jumbotron">
-                     <form action="" method="post">
-                        {{ form.csrf_token }}
-                        {{ form.name }}
-                        {{ form.submit }}
-                    </form>
-                    <p />
-                    <div class="row">
-                      <div class="col-md-4">
-                          <p class="lead">{{speaker['first_name'] }} {{speaker['last_name'] }}, 
-                          {{speaker['roles'][0]['state'] }} ({{speaker['roles'][0]['party'] }})</p>
-                          <p class="lead">{{speaker['roles'][0]['title'] }}</p>
-                          <div class="text-left">
-                              <p >Twitter: <a href="">@{{speaker['twitter_account']}}</a></p>
-                              <p >Facebook: <a href="">{{speaker['facebook_account']}}</a></p>
-                              <p >YouTube: <a href="">{{speaker['youtube_account']}}</a></p>
-                              <p >Member since: {{speaker['roles'][-1]['start_date']}}</p>
-                              <p >Bills sponsored: {{speaker['roles'][0]['bills_sponsored']}}</p>
-                              <p >Bills cosponsored: {{speaker['roles'][0]['bills_cosponsored']}}</p>
-                          </div>
-                      </div>
-                      <div class="col-md-6 ">
-                        {{ div | safe }}
-                    </div>
-                    </div>
+            <!-- Member Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">
+                    {{speaker['first_name'] }} {{speaker['last_name'] }}, {{speaker['roles'][0]['state']}} ({{speaker['roles'][0]['party']}})
+                </h5>
+                <div class="card-body">
+                    <p >Twitter: <a href="">@{{speaker['twitter_account']}}</a></p>
+                    <p >Facebook: <a href="">{{speaker['facebook_account']}}</a></p>
+                    <p >YouTube: <a href="">{{speaker['youtube_account']}}</a></p>
+                    <p >Member since: {{speaker['roles'][-1]['start_date']}}</p>
+                    <p >Bills sponsored: {{speaker['roles'][0]['bills_sponsored']}}</p>
+                    <p >Bills cosponsored: {{speaker['roles'][0]['bills_cosponsored']}}</p>
                 </div>
             </div>
+
+            <!-- Search Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Search</h5>
+                <div class="card-body">
+                    <form method="POST">
+                        {{ form.name }}
+                        {{ form.submit }}
+                        {{ form.csrf_token }}
+                    </form>
+
+
+                </div>
+            </div>
+
         </div>
-    </div>
+
+        <div class="col-md-6 my-4">
+            {{ div | safe }}
+        </div>
+
+    </div> 
+</div>
 
 {% endblock %}
 
