@@ -109,3 +109,13 @@ def make_scoreVsTime_plot(data):
     p.toolbar.logo = None
     
     return p
+
+def get_speaker(name, congress=None, chamber=None):
+    query_name = name[0].upper() + name[1:].lower()
+    client = MongoClient()
+    members = client['congressional-record']['people']
+    query = {"last_name":query_name}
+    
+    result = members.find_one(query)
+    client.close()
+    return result

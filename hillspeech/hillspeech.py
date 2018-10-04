@@ -10,7 +10,7 @@ from datetime import datetime
 import pandas as pd
 
 from helpers import get_speaker_topics, get_topic_name, make_topic_plot, \
-    score_doc, score_corpus, make_scoreVsTime_plot
+    score_doc, score_corpus, make_scoreVsTime_plot, get_speaker
 
 from forms import GetSpeakerForm
 
@@ -44,6 +44,8 @@ def speaker():
     else:
         speaker = 'kilmer'
 
+    speaker_dict = get_speaker(speaker)
+
     topics = get_speaker_topics(model,speaker, dictionary)
     topics = [(get_topic_name(x[0]), x[1]) for x in topics]
 
@@ -54,7 +56,7 @@ def speaker():
     p = make_topic_plot(labels, vals)
     script, div = components(p)
 
-    return render_template('speaker.html', speaker=speaker,
+    return render_template('speaker.html', speaker=speaker_dict,
             script=script, div=div, form=form)
 
 @app.route('/model')
