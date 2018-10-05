@@ -1,0 +1,15 @@
+.social-icons a {
+  display: inline-block;
+  height: 3.5rem;
+  width: 3.5rem;
+  background-color: #495057 !important;
+  color: #fff !important;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 4.2rem !important;
+  margin-right: 1rem;
+}
+
+.social-icons a:hover {
+  background-color: #1F77B4 !important;
+}

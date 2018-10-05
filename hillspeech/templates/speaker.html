@@ -32,21 +32,23 @@
                 <h5 class="card-header">
                     {{speaker['first_name'] }} {{speaker['last_name'] }}, {{speaker['roles'][0]['state']}} ({{speaker['roles'][0]['party']}})
                 </h5>
-                <div class="card-body text-center my-2">
-                    <a href="https://www.twitter.com/{{speaker['twitter_account']}}" style="text-decoration: none !important">
-                        <i class="fab fa-twitter fa-2x" ></i>
-                    </a>
-                    <a href="https://www.youtube.com/user/{{speaker['youtube_account']}}" style="text-decoration: none !important">
-                    <i class="fab fa-youtube fa-2x"></i>
-                    </a>
-                    <a href="https://www.facebook.com/{{speaker['facebook_account']}}" style="text-decoration: none !important">
-                    <i class="fab fa-facebook fa-2x"></i>
-                    </a>
-                </div>
                 <div class="card-body text-left">
                     <p >Member since: {{speaker['roles'][-1]['start_date']}}</p>
                     <p >Bills sponsored: {{speaker['roles'][0]['bills_sponsored']}}</p>
                     <p >Bills cosponsored: {{speaker['roles'][0]['bills_cosponsored']}}</p>
+                <div class="card-body text-center my-2">
+                    <div class="social-icons">
+                        <a href="https://www.twitter.com/{{speaker['twitter_account']}}" style="text-decoration: none !importan">
+                            <i class="fab fa-twitter fa-2x"></i>
+                        </a>
+                        <a href="https://www.youtube.com/user/{{speaker['youtube_account']}}" style="text-decoration: none !important">
+                        <i class="fab fa-youtube fa-2x"></i>
+                        </a>
+                        <a href="https://www.facebook.com/{{speaker['facebook_account']}}" style="text-decoration: none !important">
+                        <i class="fab fa-facebook fa-2x"></i>
+                        </a>
+                    </div>
+                </div>
                 </div>
             </div>
 
