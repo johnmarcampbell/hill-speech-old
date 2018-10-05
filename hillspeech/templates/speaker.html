@@ -33,9 +33,14 @@
                     {{speaker['first_name'] }} {{speaker['last_name'] }}, {{speaker['roles'][0]['state']}} ({{speaker['roles'][0]['party']}})
                 </h5>
                 <div class="card-body text-left">
-                    <p >Member since: {{speaker['roles'][-1]['start_date']}}</p>
-                    <p >Bills sponsored: {{speaker['roles'][0]['bills_sponsored']}}</p>
-                    <p >Bills cosponsored: {{speaker['roles'][0]['bills_cosponsored']}}</p>
+                    <dl class="row">
+                        <dt class="col-sm-5">Member since</dt>
+                        <dd class="col-sm-6">{{speaker['roles'][-1]['start_date']}}</dt>
+                        <dt class="col-sm-5">Bills sponsored</dt>
+                        <dd class="col-sm-6">{{speaker['roles'][0]['bills_sponsored']}}</dt>
+                        <dt class="col-sm-5">Bills cosponsored</dt>
+                        <dd class="col-sm-6">{{speaker['roles'][0]['bills_cosponsored']}}</dt>
+                    </dl>
                 <div class="card-body text-center my-2">
                     <div class="social-icons">
                         <a href="https://www.twitter.com/{{speaker['twitter_account']}}" style="text-decoration: none !importan">
