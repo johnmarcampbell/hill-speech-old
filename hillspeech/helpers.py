@@ -99,7 +99,7 @@ def make_scoreVsTime_plot(data):
     hover.tooltips = [('', '@text')]
     p.add_tools(hover)
 
-    p.circle(x='date', y='score', line_width=2, source=source, size=20, color="navy", alpha=0.6)
+    p.circle(x='date', y='score', line_width=2, source=source, size=20, alpha=0.8)
     p.xaxis.axis_label = 'Time'
     p.xaxis.axis_label_text_font_size = "25pt"
     p.xaxis.major_label_text_font_size = "15pt"
