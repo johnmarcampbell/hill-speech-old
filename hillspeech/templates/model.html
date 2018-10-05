@@ -8,8 +8,15 @@
                 <h3 class="text-center"> 50 Topics </h3>
             </div>
         </div>
-        <div class="starter-template">
-            {{ vis_html | safe }}
+        <div class="row">
+            <div class="starter-template">
+                {{ vis_html | safe }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <img src="{{ url_for('static',filename='example_topics.png') }}" class="rounded mx-auto d-block" alt="...">
+            </div>
         </div>
     </div>
 
