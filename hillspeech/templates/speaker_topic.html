@@ -19,12 +19,32 @@
 {% block content %}
 
     <div class="container">
-        <div class="page-header">
-            <div align="center">
-                <h1> Document distribution for {{speaker}} </h1>
-                <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-6 my-4">
                     {{ div | safe }}
+            </div>
+            <div class="col-md-5 offset-md-1">
+            <!-- Search Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Score: {{preview[0][0]}}</h5>
+                <div class="card-body">
+                    "{{preview[0][2][:100]}}..."
                 </div>
+            </div>
+            <div class="card my-4">
+                <h5 class="card-header">Score: {{preview[1][0]}}</h5>
+                <div class="card-body">
+                    "{{preview[1][2][:100]}}..."
+                </div>
+            </div>
+            <div class="card my-4">
+                <h5 class="card-header">Score: {{preview[2][0]}}</h5>
+                <div class="card-body">
+                    "{{preview[2][2][:100]}}..."
+                </div>
+            </div>
+
+        </div>
             </div>
         </div>
     </div>

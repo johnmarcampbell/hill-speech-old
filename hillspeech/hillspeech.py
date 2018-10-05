@@ -73,12 +73,16 @@ def speaker_topic_page(speaker, topic):
 
     # TODO: The topic number '3' is hard coded here. Change.
     community_docs = score_corpus(speaker_corpus, model, dictionary, 3)
+    community_docs.sort(reverse=True)
+    previews = community_docs[:3]
+    previews = [('{0:.2f}'.format(p[0]), p[1], p[2]) for p in previews]
+    previews = [(p[0], p[1], p[2][0].upper() + p[2][1:]) for p in previews]
     df = pd.DataFrame(community_docs, columns=['score', 'date', 'text'])
     p = make_scoreVsTime_plot(df)
     script, div = components(p)
 
     return render_template('speaker_topic.html', speaker=speaker,
-            script=script, div=div)
+            script=script, div=div, preview=previews)
 
 if __name__ == '__main__':
 	app.run(port=5000, debug=True)

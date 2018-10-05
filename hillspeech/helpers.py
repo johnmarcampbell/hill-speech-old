@@ -92,7 +92,7 @@ def score_corpus(corpus, model, dictionary, n_topic):
 
 def make_scoreVsTime_plot(data):
     """Make a plot of score versus time for a set of (scored) documents"""
-    p = figure(plot_width=800, plot_height=600, x_axis_type='datetime')
+    p = figure(plot_width=600, plot_height=700, x_axis_type='datetime')
     
     source = ColumnDataSource(data=data)
     hover = HoverTool()
