@@ -101,11 +101,11 @@ def make_scoreVsTime_plot(data):
 
     p.circle(x='date', y='score', line_width=2, source=source, size=20, alpha=0.8)
     p.xaxis.axis_label = 'Time'
-    p.xaxis.axis_label_text_font_size = "25pt"
-    p.xaxis.major_label_text_font_size = "15pt"
+    p.xaxis.axis_label_text_font_size = "35pt"
+    p.xaxis.major_label_text_font_size = "20pt"
     p.yaxis.axis_label = 'Topic Score'
-    p.yaxis.axis_label_text_font_size = "25pt"
-    p.yaxis.major_label_text_font_size = "15pt"
+    p.yaxis.axis_label_text_font_size = "35pt"
+    p.yaxis.major_label_text_font_size = "20pt"
     p.toolbar.logo = None
     
     return p
