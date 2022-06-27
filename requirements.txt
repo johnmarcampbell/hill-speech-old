@@ -103,7 +103,7 @@ pyzmq==17.1.2
 qtconsole==4.5.1
 queuelib==1.5.0
 ranger-fm==1.9.2
-reportlab==3.5.18
+reportlab==3.5.55
 requests==2.21.0
 requests-unixsocket==0.1.5
 scour==0.37
